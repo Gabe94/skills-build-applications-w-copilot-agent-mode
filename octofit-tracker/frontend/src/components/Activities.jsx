@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
 import { fetchCollection } from '../api.js'
 
+const endpointPath = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/activities/`
+  : '/api/activities/'
+
 function Activities() {
   const [activities, setActivities] = useState([])
   const [status, setStatus] = useState('loading')
-  const endpointPath = '/api/activities/'
 
   useEffect(() => {
     let isMounted = true

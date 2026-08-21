@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
 import { fetchCollection } from '../api.js'
 
+const endpointPath = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/teams/`
+  : '/api/teams/'
+
 function Teams() {
   const [teams, setTeams] = useState([])
   const [status, setStatus] = useState('loading')
-  const endpointPath = '/api/teams/'
 
   useEffect(() => {
     let isMounted = true
