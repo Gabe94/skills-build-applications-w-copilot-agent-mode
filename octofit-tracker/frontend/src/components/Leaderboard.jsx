@@ -4,11 +4,12 @@ import { fetchCollection } from '../api.js'
 function Leaderboard() {
   const [leaders, setLeaders] = useState([])
   const [status, setStatus] = useState('loading')
+  const endpointPath = '/api/leaderboard/'
 
   useEffect(() => {
     let isMounted = true
 
-    fetchCollection('leaderboard')
+    fetchCollection(endpointPath)
       .then((items) => {
         if (isMounted) {
           setLeaders(items)

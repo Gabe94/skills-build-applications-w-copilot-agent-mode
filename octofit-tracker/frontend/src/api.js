@@ -24,8 +24,20 @@ export function normalizeCollectionResponse(payload) {
   return []
 }
 
-export async function fetchCollection(component) {
-  const response = await fetch(`${apiBaseUrl}/${component}/`)
+function resolveEndpointPath(endpointPath) {
+  if (endpointPath.startsWith('/api/')) {
+    return endpointPath.slice('/api'.length)
+  }
+
+  if (endpointPath.startsWith('/')) {
+    return endpointPath
+  }
+
+  return `/${endpointPath}/`
+}
+
+export async function fetchCollection(endpointPath) {
+  const response = await fetch(`${apiBaseUrl}${resolveEndpointPath(endpointPath)}`)
 
   if (!response.ok) {
     throw new Error(`Request failed with ${response.status}`)

@@ -4,11 +4,12 @@ import { fetchCollection } from '../api.js'
 function Users() {
   const [users, setUsers] = useState([])
   const [status, setStatus] = useState('loading')
+  const endpointPath = '/api/users/'
 
   useEffect(() => {
     let isMounted = true
 
-    fetchCollection('users')
+    fetchCollection(endpointPath)
       .then((items) => {
         if (isMounted) {
           setUsers(items)

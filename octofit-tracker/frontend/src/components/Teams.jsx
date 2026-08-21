@@ -4,11 +4,12 @@ import { fetchCollection } from '../api.js'
 function Teams() {
   const [teams, setTeams] = useState([])
   const [status, setStatus] = useState('loading')
+  const endpointPath = '/api/teams/'
 
   useEffect(() => {
     let isMounted = true
 
-    fetchCollection('teams')
+    fetchCollection(endpointPath)
       .then((items) => {
         if (isMounted) {
           setTeams(items)

@@ -4,11 +4,12 @@ import { fetchCollection } from '../api.js'
 function Activities() {
   const [activities, setActivities] = useState([])
   const [status, setStatus] = useState('loading')
+  const endpointPath = '/api/activities/'
 
   useEffect(() => {
     let isMounted = true
 
-    fetchCollection('activities')
+    fetchCollection(endpointPath)
       .then((items) => {
         if (isMounted) {
           setActivities(items)
