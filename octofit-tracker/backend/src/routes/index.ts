@@ -1,11 +1,9 @@
 import { Router } from 'express'
-import { getApiBaseUrl } from '../config/apiUrl.js'
 import { Activity, Leaderboard, Team, User, Workout } from '../models/index.js'
 import { createCollectionRouter } from './createCollectionRouter.js'
 
-export function createApiRouter(port: number) {
+export function createApiRouter(baseUrl: string) {
   const router = Router()
-  const baseUrl = getApiBaseUrl(port)
 
   router.get('/health', (_request, response) => {
     response.json({ status: 'ok', baseUrl })
